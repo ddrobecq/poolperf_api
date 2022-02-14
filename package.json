@@ -1,0 +1,27 @@
+{
+  "name": "poolperf_api",
+  "version": "0.0.0",
+  "description": "api backend for PoolPerf application",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "keywords": [
+    "api",
+    "mysql",
+    "pool"
+  ],
+  "author": "Didier Drobecq/didier@drobecq.fr/https://www.drobecq.fr",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "mysql2": "^2.3.3",
+    "pug": "^3.0.2"
+  }
+}
