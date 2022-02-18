@@ -1,18 +1,18 @@
 const mysql = require('mysql2');
 const con = mysql.createConnection({
-    host: process.env.dbhost,
-    user: process.env.dbuser,
-    password: process.env.dbpwd,
-    database: process.env.dbname
+    host: process.env.DBHOST,
+    user: process.env.DBUSER,
+    password: process.env.DBPWD,
+    database: process.env.DBNAME
   });
-
   
 
 /* INIT CONNECTION DATABASE */
 const dbinit = function () {
+    
     con.connect(function(err) {
         if (err) console.log (err.message)
-        else console.log("Connecté à la base de données MySQL!");
+        else console.log("Connecté à la base de données " + con.config.database + "@" + con.config.host);
     });
     return con;
 };

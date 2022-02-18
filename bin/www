@@ -4,6 +4,13 @@
  * Module dependencies.
  */
 
+/* GET ENVIRONMENT VARIABLES */
+if (process.env.NODE_ENV == "development") {
+  const dotenv = require("dotenv");
+  dotenv.config();
+};
+console.log ("Configuration actuelle : " + process.env.NODE_ENV);
+
 var app = require('../app');
 var debug = require('debug')('billardapp:server');
 var http = require('http');

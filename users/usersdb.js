@@ -14,8 +14,9 @@ const getall = function () {
 };
 
 /* UPDATE A USER */
-const update = function (body) {
-    let strreq = 'UPDATE user SET usr_name = "' + body.name + '" WHERE usr_id=' + body.id;
+const update = function (id, body) {
+    console.log (body, id);
+    let strreq = 'UPDATE user SET usr_name = "' + body.usr_name + '" WHERE usr_id=' + id;
     console.log (strreq);
     return (db.execSQL(strreq));
 };
@@ -26,9 +27,16 @@ const create = function (body) {
     return (db.execSQL(strreq));
 };
 
+/* GET ALL games FOR A GIVEN user */
+const getallGames = function (usr_id) {
+    let strreq = 'SELECT * FROM game WHERE (usr_id1=' + usr_id + ') OR (usr_id2=' + usr_id + ')';
+    return (db.execSQL(strreq));
+};
+
 module.exports ={
     getone,
     getall,
     update,
-    create
+    create,
+    getallGames
 }

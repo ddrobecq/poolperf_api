@@ -9,12 +9,13 @@ var usersRouter = require('./users/usersAPI');
 var gamesRouter = require ('./games/gamesAPI');
 var cors = require ('cors');
 
+var app = express();
+
+// init database connection
 const db = require ('./db.js');
 if (!db.dbinit()) {
   console.log ("Echec de la connexion à la base de données.");
 };
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,8 +25,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use (cors({origin: 'https://billard.drobecq.fr'}));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use (cors({origin: process.env.ORIGIN}));
+//app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/user', usersRouter);

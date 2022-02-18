@@ -43,10 +43,10 @@ router.post("/", jsonParser, function(req, res) {
 });
 
 /* PUT user info TO UPDATE A user */
-router.put("/", jsonParser, function(req, res) {
+router.put("/:id", jsonParser, function(req, res) {
   console.log ("update user posted : ", req.body);
 
-  usersdb.update (req.body).then (function (result) {
+  usersdb.update (req.params.id, req.body).then (function (result) {
     console.log (result);
     res.send (result);
   }).catch (function (err){
@@ -54,5 +54,17 @@ router.put("/", jsonParser, function(req, res) {
     console.log (err);
   });  
 });
+
+/* GET games LISTING FOR A user */
+router.get(':id/games', function(req, res, next) {
+  gamesdb.getallGames (req.params.id).then (function (result) {
+    console.log (result);
+    res.send (result);
+  }).catch (function (err){
+    res.status(500).json({err});
+    console.log (err);
+  });
+});
+
 
 module.exports = router;
