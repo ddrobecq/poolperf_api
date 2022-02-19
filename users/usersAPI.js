@@ -18,6 +18,28 @@ router.get('/', function(req, res, next) {
   });
 });
 
+/* GET games LISTING FOR A user */
+router.get('/:id/games', function(req, res, next) {
+  usersdb.getallGames (req.params.id).then (function (result) {
+    console.log (result);
+    res.send (result);
+  }).catch (function (err){
+    res.status(500).json({err});
+    console.log (err);
+  });
+});
+
+/* GET USER'S AVG LISTING FOR A user */
+router.get('/:id/stats', function(req, res, next) {
+  usersdb.getStats (req.params.id).then (function (result) {
+    console.log (result);
+    res.send (result);
+  }).catch (function (err){
+    res.status(500).json({err});
+    console.log (err);
+  });
+});
+
 /* GET user info */
 router.get('/:id', function(req, res, next) {
   usersdb.getone (req.params.id).then (function (result) {
@@ -53,17 +75,6 @@ router.put("/:id", jsonParser, function(req, res) {
     res.status(500).json({err});
     console.log (err);
   });  
-});
-
-/* GET games LISTING FOR A user */
-router.get(':id/games', function(req, res, next) {
-  gamesdb.getallGames (req.params.id).then (function (result) {
-    console.log (result);
-    res.send (result);
-  }).catch (function (err){
-    res.status(500).json({err});
-    console.log (err);
-  });
 });
 
 

@@ -29,8 +29,8 @@ app.use (cors({origin: process.env.ORIGIN}));
 //app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/user', usersRouter);
-app.use('/game', gamesRouter);
+app.use('/users', usersRouter);
+app.use('/games', gamesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

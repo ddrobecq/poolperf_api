@@ -29,7 +29,20 @@ const create = function (body) {
 
 /* GET ALL games FOR A GIVEN user */
 const getallGames = function (usr_id) {
-    let strreq = 'SELECT * FROM game WHERE (usr_id1=' + usr_id + ') OR (usr_id2=' + usr_id + ')';
+    let strreq = 'SELECT * FROM game WHERE (usr_id=' + usr_id + ')';
+    return (db.execSQL(strreq));
+};
+
+/* GET AVG FOR A GIVEN user */
+const getStats = function (usr_id) {
+    let strreq = 'SELECT (sum(gam_pocket)/sum(gam_shot)) as avgPocket, \
+    (sum(gam_foul)/sum(gam_shot)) as avgFoul, \
+    min(gam_foul/gam_shot) as minFoul, \
+    max(gam_foul/gam_shot) as maxFoul , \
+    min(gam_pocket/gam_shot) as minPocket, \
+    max(gam_pocket/gam_shot) as maxPocket \
+    FROM game WHERE (usr_id=' + usr_id + ') \
+    GROUP BY usr_id';
     return (db.execSQL(strreq));
 };
 
@@ -38,5 +51,6 @@ module.exports ={
     getall,
     update,
     create,
-    getallGames
+    getallGames,
+    getStats
 }

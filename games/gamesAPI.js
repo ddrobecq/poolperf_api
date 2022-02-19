@@ -11,7 +11,7 @@ var jsonParser = bodyParser.json();
 router.post("/", jsonParser, function(req, res) {
   console.log ("insert game posted : ", req.body);
  
-  gamesdb.create (JSON.parse (req.body.player1), JSON.parse(req.body.player2)).then (function (result) {
+  gamesdb.create (JSON.parse (req.body.player)).then (function (result) {
     console.log (result);
     res.send (result);
   }).catch (function (err){
