@@ -9,7 +9,6 @@ const con = mysql.createConnection({
 
 /* INIT CONNECTION DATABASE */
 const dbinit = function () {
-    
     con.connect(function(err) {
         if (err) console.log (err.message)
         else console.log("Connecté à la base de données " + con.config.database + "@" + con.config.host);
@@ -19,13 +18,16 @@ const dbinit = function () {
 
 /* EXECUTE SQL QUERY WITH A PROMISE */
 const execSQL = function (strreq) {
-    let p = new Promise (function (res, rej) {
-        con.query(strreq, function (err, result) {
-            if (err) rej (err); 
-            else res (result); 
-        });        
-    });
-    return p;
+    if (dbinit()) {
+        let p = new Promise (function (res, rej) {
+            con.query(strreq, function (err, result) {
+                if (err) rej (err); 
+                else res (result); 
+            });        
+        });
+        return p;
+    }
+    else return false;
 };
 
 module.exports ={
