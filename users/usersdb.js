@@ -9,7 +9,7 @@ const getone = function (id) {
 
 /* GET ALL USERS */
 const getall = function () {
-    let strreq = 'SELECT * FROM user';
+    let strreq = 'SELECT usr_id FROM user';
     return (db.execSQL(strreq));
 };
 
