@@ -6,28 +6,27 @@ const con = mysql.createConnection({
     database: process.env.DBNAME
   });
   
-
 /* INIT CONNECTION DATABASE */
-const dbinit = function () {
+function dbinit () {
     con.connect(function(err) {
-        if (err) console.log (err.message)
+        if (err){
+            console.log (err.message);
+            return false;
+        }
         else console.log("Connecté à la base de données " + con.config.database + "@" + con.config.host);
     });
-    return con;
+    return true;
 };
 
 /* EXECUTE SQL QUERY WITH A PROMISE */
 const execSQL = function (strreq) {
-    if (dbinit()) {
-        let p = new Promise (function (res, rej) {
-            con.query(strreq, function (err, result) {
-                if (err) rej (err); 
-                else res (result); 
-            });        
-        });
-        return p;
-    }
-    else return false;
+    let p = new Promise (function (res, rej) {
+        con.query(strreq, function (err, result) {
+            if (err) rej (err); 
+            else res (result); 
+        });        
+    });
+    return p;
 };
 
 module.exports ={
