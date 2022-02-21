@@ -23,7 +23,7 @@ const update = function (id, body) {
 
 /* INSERT A USER */
 const create = function (body) {
-    let strreq = 'INSERT INTO user (usr_name) VALUES ("' + body.name  +  '")';
+    let strreq = 'INSERT INTO user (usr_name) VALUES ("' + body.usr_name  +  '")';
     return (db.execSQL(strreq));
 };
 

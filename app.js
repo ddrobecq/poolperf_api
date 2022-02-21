@@ -11,12 +11,6 @@ var cors = require ('cors');
 
 var app = express();
 
-// init database connection
-const db = require ('./db.js');
-if (!db.dbinit()) {
-  console.log ("Echec de la connexion à la base de données.");
-};
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
