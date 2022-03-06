@@ -23,7 +23,9 @@ const execSQL = function (strreq) {
     let p = new Promise (function (res, rej) {
         con.query(strreq, function (err, result) {
             if (err) rej (err); 
-            else res (result); 
+            else{
+                res (result); 
+            }
         });        
     });
     return p;

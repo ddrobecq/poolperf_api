@@ -1,4 +1,3 @@
-const mysql = require('mysql2');
 const db = require('../db');
 
 /* GET ONE USER BY ID */
@@ -15,8 +14,9 @@ const getall = function () {
 
 /* UPDATE A USER */
 const update = function (id, body) {
-    console.log (body, id);
-    let strreq = 'UPDATE user SET usr_name = "' + body.usr_name + '" WHERE usr_id=' + id;
+    let strreq = 'UPDATE user \
+    SET usr_name = "' + body.usr_name + '", \
+    usr_avatar = ' + body.usr_avatar + '" WHERE usr_id=' + id;
     console.log (strreq);
     return (db.execSQL(strreq));
 };
